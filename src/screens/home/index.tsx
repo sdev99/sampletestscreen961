@@ -1,9 +1,10 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './style';
-import { Dimensions, Image, Text, View } from 'react-native';
+import { Dimensions, Image, ScrollView, Text, View } from 'react-native';
 import Header from '../../componenets/Header';
 import HomeMenuSection from '../../componenets/HomeMenuSection';
 import HorizontalCardSection from '../../componenets/HorizontalCardSection';
+import NewsSection from '../../componenets/NewsSection';
 
 const ScreenSize = Dimensions.get('screen');
 
@@ -30,43 +31,60 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Header />
-      <View style={styles.textContainer}>
-        <Text style={styles.greetingText}>Good afterNoon,</Text>
-        <Text style={styles.greetingText}>Anthony</Text>
-      </View>
-      <View style={styles.temprature}>
-        <Image
-          source={require('../../assets/images/sun.png')}
-          style={styles.icon}
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.textContainer}>
+          <Text style={styles.greetingText}>Good afterNoon,</Text>
+          <Text style={styles.greetingText}>Anthony</Text>
+        </View>
+        <View style={styles.temprature}>
+          <Image
+            source={require('../../assets/images/sun.png')}
+            style={styles.icon}
+          />
+          <Text style={styles.tempText}>24c</Text>
+          <Text style={styles.partyText}>party cloudy</Text>
+        </View>
+        <View style={styles.list}>
+          <HomeMenuSection
+            data={menuData}
+            onPress={item => console.log('Pressed', item.title)}
+          />
+        </View>
+        <HorizontalCardSection
+          data={[
+            {
+              id: '1',
+              image: require('../../assets/images/foodie.png'), // ya URI
+              title: 'Join our exclusive foodie community',
+              subtitle: 'Ad • Rvwd by 961',
+              lable: 'Check it out',
+              onPress: () => console.log('Card 1 pressed'),
+            },
+            {
+              id: '2',
+              image: require('../../assets/images/foodie.png'),
+              title: 'Explore travel destinations',
+              subtitle: 'Ad • Rvwd by 524',
+              lable: 'instagram',
+            },
+          ]}
         />
-        <Text style={styles.tempText}>24c</Text>
-        <Text style={styles.partyText}>party cloudy</Text>
-      </View>
-      <View style={styles.list}>
-        <HomeMenuSection
-          data={menuData}
-          onPress={item => console.log('Pressed', item.title)}
-        />
-      </View>
-      <HorizontalCardSection
-        data={[
-          {
-            id: '1',
-            image: require('../../assets/images/foodie.png'), // ya URI
-            title: 'Join our exclusive foodie community',
-            subtitle: 'Ad • Rvwd by 961',
-            lable: 'Check it out',
-            onPress: () => console.log('Card 1 pressed'),
-          },
-          {
-            id: '2',
-            image: require('../../assets/images/foodie.png'),
-            title: 'Explore travel destinations',
-            subtitle: 'Ad • Rvwd by 524',
-            lable: 'instagram',
-          },
-        ]}
-      />
+        <View style={styles.newSection}>
+          <Text style={styles.news}>Latest News</Text>
+          <NewsSection
+            data={[
+              {
+                id: '1',
+                text: 'Multiple Israeli airstrikes in South Lebanon in sudden escalation.',
+              },
+              {
+                id: '2',
+                text: 'Multiple Israeli airstrikes in South Lebanon in sudden escalation.',
+              },
+            ]}
+          />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
