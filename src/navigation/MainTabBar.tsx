@@ -1,21 +1,52 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import React, { FunctionComponent } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { HomeScreen, ChatScreen } from '../screens';
+import { CommonActions } from '@react-navigation/native';
+import { Add, ChatSpark, Logo, NewsPaper, Pulse } from '../assets/svgs';
 
-const MainTabBar: FunctionComponent<
+export const screens = [
+  {
+    name: 'Home',
+    component: HomeScreen,
+    tabbarIcon: Logo,
+  },
+  {
+    name: 'News',
+    component: ChatScreen,
+    tabbarIcon: NewsPaper,
+  },
+  {
+    name: 'Chat',
+    component: HomeScreen,
+    tabbarIcon: ChatSpark,
+  },
+  {
+    name: 'Analytics',
+    component: ChatScreen,
+    tabbarIcon: Pulse,
+  },
+  {
+    name: 'Add',
+    component: ChatScreen,
+    tabbarIcon: Add,
+  },
+];
+
+const TabbarIcon = ({ icon, color, onPress }: any) => {
+  const TabIcon = icon;
+  return (
+    <TouchableOpacity style={styles.tabItem} onPress={onPress}>
+      <TabIcon color={color} />
+    </TouchableOpacity>
+  );
+};
+
+export const MainTabBar: FunctionComponent<
   BottomTabBarProps & {
-    onPlusIconPress?: () => void;
     onTabItemPress?: (routeName: string) => void;
-    closeModal?: () => void;
   }
-> = ({
-  state,
-  navigation,
-  descriptors,
-  onTabItemPress,
-  onPlusIconPress,
-  closeModal,
-}) => {
+> = ({ state, navigation, descriptors, onTabItemPress }) => {
   const { routes } = state;
 
   const focusedRoute = state.routes[state.index];
@@ -27,7 +58,7 @@ const MainTabBar: FunctionComponent<
     const route = routes[index];
     onTabItemPress && onTabItemPress(route.name);
 
-    const { params } = (route.params ?? {}) as { params: RouteParams };
+    const { params } = (route.params ?? {}) as any;
 
     const event = navigation.emit({
       type: 'tabPress',
@@ -38,48 +69,45 @@ const MainTabBar: FunctionComponent<
 
     if (!focused && !event.defaultPrevented) {
       if (params?.reset) {
+        navigation.dispatch({
+          ...CommonActions.reset({
+            index: 0,
+            routes: [{ name: route.name }],
+          }),
+          target: state.key,
+        });
       } else {
+        navigation.dispatch({
+          ...CommonActions.navigate({
+            name: route.name,
+            merge: true,
+          }),
+          target: state.key,
+        });
       }
     }
-    closeModal && closeModal();
   };
 
   return (
     <View style={styles.tabContainer}>
-      <View style={styles.plusBtnView}>
-        <TouchableOpacity style={styles.createView} onPress={onPlusIconPress}>
-          <TabPlusIcon />
-        </TouchableOpacity>
-      </View>
-
       <View style={styles.tabView}>
         {routes.map((route, key) => {
-          const isDisabled =
-            userProfile?.organizationName?.toLowerCase() === 'social' &&
-            route.name === 'ChallengeAssessmentsView';
-
-          const TabIcon = TabIcons[route.name];
-          return TabIcon ? (
+          const TabIcon = screens.find(
+            item => item.name === route.name,
+          )?.tabbarIcon;
+          return (
             <React.Fragment key={key}>
-              <TouchableOpacity
-                style={styles.iconView}
+              <TabbarIcon
+                icon={TabIcon}
+                color={
+                  key === state.index
+                    ? tabBarActiveTintColor
+                    : tabBarInactiveTintColor
+                }
                 onPress={() => onPress(key)}
-                disabled={isDisabled}
-              >
-                <TabIcon
-                  color={
-                    isDisabled
-                      ? Colors.tab.tabBarDisable
-                      : key === state.index
-                      ? tabBarActiveTintColor
-                      : tabBarInactiveTintColor
-                  }
-                />
-              </TouchableOpacity>
-
-              {key === 1 && <View style={styles.iconView} />}
+              />
             </React.Fragment>
-          ) : null;
+          );
         })}
       </View>
     </View>
@@ -88,22 +116,23 @@ const MainTabBar: FunctionComponent<
 
 const styles = StyleSheet.create({
   tabContainer: {
-    height: 76,
-    position: 'absolute',
-    zIndex: 1,
-    right: 0,
-    left: 0,
-    bottom: 0,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.3,
-    shadowRadius: 1,
-    elevation: 2,
-    backgroundColor: 'red',
+    paddingBottom: 16,
+    paddingHorizontal: 12,
   },
-  iconView: {
+  tabView: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    position: 'relative',
+  },
+
+  tabItem: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
+    height: 40,
+  },
+  tabIcon: {
+    width: 30,
   },
 });
