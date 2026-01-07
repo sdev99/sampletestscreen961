@@ -62,5 +62,6 @@ export const styles = StyleSheet.create({
   },
   newSection: {
     paddingLeft: 16,
+    marginTop: 35,
   },
 });

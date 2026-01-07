@@ -33,7 +33,7 @@ const HomeScreen = () => {
       <Header />
       <ScrollView style={styles.scrollView}>
         <View style={styles.textContainer}>
-          <Text style={styles.greetingText}>Good afterNoon,</Text>
+          <Text style={styles.greetingText}>Good afternoon,</Text>
           <Text style={styles.greetingText}>Anthony</Text>
         </View>
         <View style={styles.temprature}>
