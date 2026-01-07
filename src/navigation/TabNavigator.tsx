@@ -8,11 +8,14 @@ const Tab = createBottomTabNavigator();
 export default function TabNavigator() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Chat" component={ChatScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
-
