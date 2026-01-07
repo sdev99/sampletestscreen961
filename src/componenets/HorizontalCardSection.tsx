@@ -23,8 +23,7 @@ type HorizontalCardSectionProps = {
 };
 
 const { width } = Dimensions.get('window');
-const CARD_WIDTH = width * 0.7; // card width 70% of screen
-const CARD_HEIGHT = 180;
+const CARD_WIDTH = width * 0.85; // card width 70% of screen
 
 const HorizontalCardSection: React.FC<HorizontalCardSectionProps> = ({
   data,
@@ -33,6 +32,7 @@ const HorizontalCardSection: React.FC<HorizontalCardSectionProps> = ({
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
+      style={styles.scrollView}
       contentContainerStyle={{ paddingHorizontal: 16, marginTop: 50 }}
     >
       {data.map(item => (
@@ -44,52 +44,39 @@ const HorizontalCardSection: React.FC<HorizontalCardSectionProps> = ({
               style={styles.icon}
             />
           </View>
-          <TouchableOpacity
-            key={item.id}
-            style={styles.cardContainer}
-            onPress={item.onPress}
-            activeOpacity={0.8}
-          >
-            <Image
-              source={item.image}
-              style={styles.image}
-              resizeMode="contain"
-            />
-            <View style={styles.textContainer}>
-              <Text style={styles.title}>{item.title}</Text>
-              {item.subtitle && (
-                <Text style={styles.subtitle}>{item.subtitle}</Text>
-              )}
-            </View>
-          </TouchableOpacity>
+
+          <Image
+            source={item.image}
+            style={styles.image}
+            resizeMode="contain"
+          />
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>{item.title}</Text>
+            {item.subtitle && (
+              <Text style={styles.subtitle}>{item.subtitle}</Text>
+            )}
+          </View>
         </View>
       ))}
     </ScrollView>
   );
 };
 
+const ScreenWidth = Dimensions.get('screen').width;
+
 const styles = StyleSheet.create({
+  scrollView: {
+    width: '100%',
+    alignSelf: 'flex-start',
+  },
   mainContainer: {
     marginBottom: 6,
-  },
-  cardContainer: {
-    width: CARD_WIDTH,
-    height: CARD_HEIGHT,
-    borderRadius: 12,
-    marginRight: 16,
-    backgroundColor: '#fff',
-    overflow: 'hidden',
-    // shadow for iOS
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    // shadow for Android
-    elevation: 5,
+    marginRight: 10,
+    alignSelf: 'flex-start',
   },
   image: {
-    width: '100%',
-    height: '100%',
+    width: CARD_WIDTH,
+    height: (CARD_WIDTH * 7) / 15,
   },
   textContainer: {
     padding: 8,

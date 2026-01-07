@@ -4,7 +4,7 @@ import {
 } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { MainTabBar, screens } from './MainTabBar';
-import { TouchableOpacity, Image } from 'react-native';
+import { TouchableOpacity, Image, View } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,7 +17,7 @@ const TabBarComponent =
 export default function TabNavigator() {
   return (
     <NavigationContainer>
-      <Tab.Navigator tabBar={TabBarComponent({ onTabItemPress: () => {} })}>
+      <Tab.Navigator screenOptions={{tabBarBackground:()=>(<View />)}} tabBar={TabBarComponent({ onTabItemPress: () => {} })}>
         {screens.map(screen => {
           return (
             <Tab.Screen

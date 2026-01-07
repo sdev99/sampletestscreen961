@@ -1,9 +1,12 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './style';
-import { Image, Text, View } from 'react-native';
+import { Dimensions, Image, Text, View } from 'react-native';
 import Header from '../../componenets/Header';
 import HomeMenuSection from '../../componenets/HomeMenuSection';
 import HorizontalCardSection from '../../componenets/HorizontalCardSection';
+
+const ScreenSize = Dimensions.get('screen');
+
 const menuData = [
   {
     id: '1',
@@ -22,6 +25,7 @@ const menuData = [
   },
   { id: '6', title: 'All', icon: require('../../assets/images/threedot.png') },
 ];
+
 const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>

@@ -118,6 +118,10 @@ const styles = StyleSheet.create({
   tabContainer: {
     paddingBottom: 16,
     paddingHorizontal: 12,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   tabView: {
     display: 'flex',
@@ -125,7 +129,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     position: 'relative',
   },
-
   tabItem: {
     flex: 1,
     alignItems: 'center',

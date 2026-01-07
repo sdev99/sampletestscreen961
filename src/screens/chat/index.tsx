@@ -7,7 +7,7 @@ const ChatScreen = () => {
     <SafeAreaView style={styles.container}>
       <Text>Chat Screen</Text>
     </SafeAreaView>
-  );
+  );  
 };
 
 export default ChatScreen;
