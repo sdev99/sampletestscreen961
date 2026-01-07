@@ -37,4 +37,7 @@ export const styles = StyleSheet.create({
     width: 25,
     height: 25,
   },
+  list: {
+    marginTop: 65,
+  },
 });
