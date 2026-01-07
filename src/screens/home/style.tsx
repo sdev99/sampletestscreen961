@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: 20,
   },
   bgView: {
     position: 'absolute',
@@ -18,7 +17,6 @@ export const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-    backgroundColor: '#ffffff',
   },
   greetingText: {
     color: '#000',

@@ -35,8 +35,8 @@ const HorizontalCardSection: React.FC<HorizontalCardSectionProps> = ({
       style={styles.scrollView}
       contentContainerStyle={{ paddingHorizontal: 16, marginTop: 50 }}
     >
-      {data.map(item => (
-        <View style={styles.mainContainer}>
+      {data.map((item, key) => (
+        <View style={styles.mainContainer} key={key}>
           <View style={styles.lableContainer}>
             <Text style={styles.lableText}>{item.lable}</Text>
             <Image

@@ -1,12 +1,11 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './style';
-import { Dimensions, Image, ScrollView, Text, View } from 'react-native';
+import { Image, ScrollView, Text, View } from 'react-native';
 import Header from '../../componenets/Header';
 import HomeMenuSection from '../../componenets/HomeMenuSection';
 import HorizontalCardSection from '../../componenets/HorizontalCardSection';
 import NewsSection from '../../componenets/NewsSection';
-
-const ScreenSize = Dimensions.get('screen');
+import { ScreenBg } from '../../assets/svgs';
 
 const menuData = [
   {
@@ -30,6 +29,13 @@ const menuData = [
 const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.bgView}>
+        <Image
+          style={styles.bgViewImg}
+          resizeMode="stretch"
+          source={require('../../assets/images/ScreenBg.png')}
+        />
+      </View>
       <Header />
       <ScrollView style={styles.scrollView}>
         <View style={styles.textContainer}>

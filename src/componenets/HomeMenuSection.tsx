@@ -27,15 +27,10 @@ const HomeMenuSection: React.FC<HomeMenuSectionProps> = ({ data, onPress }) => {
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ paddingHorizontal: 16 }}
+      contentContainerStyle={{ paddingHorizontal: 6 }}
     >
       {data.map(item => (
-        <View key={item.id} style={styles.box}>
-          {item.badge && (
-            <View style={styles.badge}>
-              <Text style={styles.badgeText}>{item.badge}</Text>
-            </View>
-          )}
+        <View key={item.id} style={styles.boxContainer}>
           <TouchableOpacity
             style={[
               styles.itemContainer,
@@ -50,6 +45,11 @@ const HomeMenuSection: React.FC<HomeMenuSectionProps> = ({ data, onPress }) => {
             />
           </TouchableOpacity>
           <Text style={styles.title}>{item.title}</Text>
+          {item.badge && (
+            <View style={styles.badge}>
+              <Text style={styles.badgeText}>{item.badge}</Text>
+            </View>
+          )}
         </View>
       ))}
     </ScrollView>
@@ -58,8 +58,8 @@ const HomeMenuSection: React.FC<HomeMenuSectionProps> = ({ data, onPress }) => {
 
 const styles = StyleSheet.create({
   itemContainer: {
-    width: 60,
-    height: 60,
+    width: 45,
+    height: 50,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
@@ -70,13 +70,13 @@ const styles = StyleSheet.create({
     overflow: 'visible',
   },
   icon: {
-    width: 28,
-    height: 28,
+    width: 23,
+    height: 23,
   },
-  box: {
+  boxContainer: {
+    paddingTop: 5,
     alignItems: 'center',
-    marginRight: 25,
-    overflow: 'visible',
+    width: 69,
   },
   title: {
     fontSize: 12,
@@ -85,22 +85,18 @@ const styles = StyleSheet.create({
   },
   badge: {
     position: 'absolute',
-    top: -4,
-    left: 15,
     backgroundColor: 'red',
     height: 12,
     width: 30,
-    borderRadius: 15,
+    borderRadius: 16,
     paddingHorizontal: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 999,
-    elevation: 10,
   },
   badgeText: {
-    color: 'white',
+    color: '#fff',
     fontSize: 10,
     fontWeight: 'bold',
+    textAlign: 'center',
+    lineHeight: 12,
   },
 });
 
