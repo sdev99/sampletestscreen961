@@ -62,8 +62,6 @@ const HorizontalCardSection: React.FC<HorizontalCardSectionProps> = ({
   );
 };
 
-const ScreenWidth = Dimensions.get('screen').width;
-
 const styles = StyleSheet.create({
   scrollView: {
     width: '100%',
@@ -79,15 +77,17 @@ const styles = StyleSheet.create({
     height: (CARD_WIDTH * 7) / 15,
   },
   textContainer: {
-    padding: 8,
+    paddingVertical: 8,
   },
   title: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 17,
+    fontWeight: '500',
+    color: '#2F2828',
   },
   subtitle: {
-    fontSize: 12,
-    color: 'gray',
+    fontSize: 14,
+    fontWeight: '400',
+    color: '#828282',
     marginTop: 2,
   },
   lableContainer: {
