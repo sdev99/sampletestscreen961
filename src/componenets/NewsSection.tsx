@@ -30,18 +30,18 @@ const NewsSection: React.FC<Props> = ({ data }) => {
 export default NewsSection;
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 0,
   },
 
   card: {
     width: Width * 0.7,
     minHeight: 78,
     backgroundColor: '#fff',
-    borderRadius: 6,
+    borderRadius: 12,
     padding: 12,
     marginRight: 20,
     justifyContent: 'center',
-    borderColor: '#EFF0F3',
+    borderColor: '#d3d5ddff',
     borderStyle: 'solid',
     borderWidth: 1,
   },

@@ -118,10 +118,11 @@ const styles = StyleSheet.create({
   tabContainer: {
     paddingBottom: 16,
     paddingHorizontal: 12,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
+    position:"absolute",
+    bottom:0,
+    left:0,
+    right:0,
+    backgroundColor:"#fff"
   },
   tabView: {
     display: 'flex',
