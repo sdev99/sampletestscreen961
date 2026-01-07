@@ -30,29 +30,27 @@ const HomeMenuSection: React.FC<HomeMenuSectionProps> = ({ data, onPress }) => {
       contentContainerStyle={{ paddingHorizontal: 16 }}
     >
       {data.map(item => (
-        <>
+        <View key={item.id} style={styles.box}>
           {item.badge && (
             <View style={styles.badge}>
               <Text style={styles.badgeText}>{item.badge}</Text>
             </View>
           )}
-          <View key={item.id} style={{ alignItems: 'center', marginRight: 25 }}>
-            <TouchableOpacity
-              style={[
-                styles.itemContainer,
-                { backgroundColor: item.backgroundColor || '#fff' },
-              ]}
-              onPress={() => onPress?.(item)}
-            >
-              <Image
-                source={item.icon}
-                style={styles.icon}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-            <Text style={styles.title}>{item.title}</Text>
-          </View>
-        </>
+          <TouchableOpacity
+            style={[
+              styles.itemContainer,
+              { backgroundColor: item.backgroundColor || '#fff' },
+            ]}
+            onPress={() => onPress?.(item)}
+          >
+            <Image
+              source={item.icon}
+              style={styles.icon}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          <Text style={styles.title}>{item.title}</Text>
+        </View>
       ))}
     </ScrollView>
   );
@@ -66,17 +64,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
-    // Shadow for iOS
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.25,
-    shadowRadius: 2,
-    // Shadow for Android
-    elevation: 5,
+    borderColor: '#EFF0F3',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    overflow: 'visible',
   },
   icon: {
     width: 28,
     height: 28,
+  },
+  box: {
+    alignItems: 'center',
+    marginRight: 25,
+    overflow: 'visible',
   },
   title: {
     fontSize: 12,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   badge: {
     position: 'absolute',
     top: -4,
-    left: 30,
+    left: 15,
     backgroundColor: 'red',
     height: 12,
     width: 30,
@@ -94,7 +94,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    zIndex: 10,
+    zIndex: 999,
+    elevation: 10,
   },
   badgeText: {
     color: 'white',

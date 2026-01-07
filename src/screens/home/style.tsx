@@ -4,6 +4,11 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
+    paddingBottom: 20,
+  },
+  scrollView: {
+    flex: 1,
+    backgroundColor: '#ffffff',
   },
   greetingText: {
     color: '#000',
@@ -39,5 +44,13 @@ export const styles = StyleSheet.create({
   },
   list: {
     marginTop: 65,
+  },
+  news: {
+    fontSize: 20,
+    fontWeight: '800',
+    paddingBottom: 7,
+  },
+  newSection: {
+    paddingLeft: 16,
   },
 });
