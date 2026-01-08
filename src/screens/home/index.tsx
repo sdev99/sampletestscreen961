@@ -20,8 +20,9 @@ const menuData = [
   {
     id: '5',
     title: 'Whish',
-    icon: require('../../assets/images/bed.png'),
-    backgroundColor: '#e74c3c',
+    icon: require('../../assets/images/itunes.png'),
+    isFullIcon: true,
+    subTitle: 'AD',
   },
   { id: '6', title: 'All', icon: require('../../assets/images/threedot.png') },
 ];
@@ -47,8 +48,8 @@ const HomeScreen = () => {
             source={require('../../assets/images/sun.png')}
             style={styles.icon}
           />
-          <Text style={styles.tempText}>24c</Text>
-          <Text style={styles.partyText}>party cloudy</Text>
+          <Text style={styles.tempText}>24°C</Text>
+          <Text style={styles.partyText}>Partly Cloudy</Text>
         </View>
         <View style={styles.list}>
           <HomeMenuSection

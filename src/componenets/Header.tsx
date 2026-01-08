@@ -1,17 +1,31 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import {
+  Logo,
+  MegaCreater,
+  Message,
+  NotificationBellIcon,
+} from '../assets/svgs';
 
-const Stat = ({ icon, value }: { icon: any; value: string }) => (
-  <View style={styles.stat}>
-    <Image source={icon} style={styles.statIcon} />
+const Stat = ({
+  icon,
+  svgIcon: SvgIcon,
+  value,
+}: {
+  icon?: any;
+  svgIcon?: any;
+  value: string;
+}) => (
+  <TouchableOpacity style={styles.stat}>
+    {SvgIcon && <SvgIcon width={15} height={15} />}
+    {icon && <Image source={icon} style={styles.statIcon} />}
     <Text style={styles.statText}>{value}</Text>
-  </View>
+  </TouchableOpacity>
 );
 
-const IconWithBadge = ({ icon, badge }: { icon: any; badge: string }) => (
+const IconWithBadge = ({ icon: Icon, badge }: { icon: any; badge: string }) => (
   <TouchableOpacity style={styles.iconWrapper}>
-    <Image source={icon} style={styles.actionIcon} />
-
+    <Icon style={styles.iconStyle} width={15} height={15} />
     <View style={styles.badge}>
       <Text style={styles.badgeText}>{badge}</Text>
     </View>
@@ -23,11 +37,7 @@ const Header = () => {
     <View style={styles.container}>
       {/* LEFT SIDE */}
       <View style={styles.left}>
-        {/* <Text style={styles.score}>961</Text> */}
-        <Image
-          source={require('../assets/images/logo.png')}
-          style={styles.logo}
-        />
+        <Logo color="#FF0000" width={40} height={21} />
         <Image
           source={require('../assets/images/avatar.png')}
           style={styles.avatar}
@@ -37,9 +47,9 @@ const Header = () => {
       {/* RIGHT SIDE */}
       <View style={styles.right}>
         <Stat icon={require('../assets/images/star.png')} value="523" />
-        <Stat icon={require('../assets/images/leave.png')} value="19.9k" />
-        <IconWithBadge icon={require('../assets/images/file.png')} badge="15" />
-        <IconWithBadge icon={require('../assets/images/bell.png')} badge="9+" />
+        <Stat svgIcon={MegaCreater} value="19.9k" />
+        <IconWithBadge icon={Message} badge="15" />
+        <IconWithBadge icon={NotificationBellIcon} badge="99+" />
       </View>
     </View>
   );
@@ -48,8 +58,9 @@ const Header = () => {
 export default Header;
 const styles = StyleSheet.create({
   container: {
-    height: 64,
-    paddingHorizontal: 16,
+    height: 50,
+    paddingLeft: 16,
+    paddingRight: 8,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -58,6 +69,7 @@ const styles = StyleSheet.create({
   left: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 16,
   },
 
   logo: {
@@ -69,13 +81,13 @@ const styles = StyleSheet.create({
   avatar: {
     width: 24,
     height: 24,
-    borderRadius: 16,
+    borderRadius: 12,
   },
 
   right: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 18,
+    gap: 15,
   },
 
   stat: {
@@ -93,11 +105,18 @@ const styles = StyleSheet.create({
     marginLeft: 3,
     fontSize: 13,
     fontWeight: '600',
-    color: '#111',
+    color: '#4E4E4E',
+    paddingHorizontal: 1,
   },
 
+  iconStyle: {
+    position: 'absolute',
+    top: 8,
+    left: 0,
+    alignSelf: 'center',
+  },
   iconWrapper: {
-    marginHorizontal: 6,
+    height: 30,
   },
 
   actionIcon: {
@@ -107,21 +126,21 @@ const styles = StyleSheet.create({
   },
 
   badge: {
-    position: 'absolute',
-    top: -6,
-    right: -15,
+    marginLeft: 6,
     backgroundColor: '#FF3B30',
     borderRadius: 10,
     minWidth: 23,
-    height: 12,
+    height: 15,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 4,
+    borderWidth: 1.3,
+    borderColor: '#fff',
   },
 
   badgeText: {
     color: '#fff',
     fontSize: 10,
-    fontWeight: '700',
+    fontWeight: '600',
   },
 });

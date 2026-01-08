@@ -20,19 +20,20 @@ export const styles = StyleSheet.create({
   },
   greetingText: {
     color: '#000',
-    margin: 'auto',
-    fontWeight: '500',
+    fontWeight: '600',
     fontSize: 28,
   },
   textContainer: {
-    marginTop: 19,
+    marginTop: 29,
+    alignItems: 'center',
   },
   temprature: {
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 28,
+    marginTop: 16,
+    height: 37,
   },
   tempText: {
     fontSize: 15,
@@ -51,7 +52,7 @@ export const styles = StyleSheet.create({
     height: 25,
   },
   list: {
-    marginTop: 65,
+    marginTop: 60,
   },
   news: {
     fontSize: 20,
@@ -60,7 +61,7 @@ export const styles = StyleSheet.create({
   },
   newSection: {
     paddingLeft: 16,
-    marginTop: 35,
+    marginTop: 30,
     marginBottom: 100,
   },
 });
